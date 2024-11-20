@@ -87,7 +87,23 @@ const isAnagram4 = (s, t) => {
 
 // const s = "anagram",
 //   t = "nagaram";
-const s = "a",
-  t = "ab";
+// const s = "a",
+//   t = "ab";
 
-console.log(isAnagram4(s, t));
+const isAnagram5 = (s, t) => {
+  const cache = {};
+  for (let i = 0; i < s.length; i++) {
+    cache[s[i]] = !cache[s[i]] ? 1 : cache[s[i]] + 1;
+  }
+  console.log(cache);
+  for (let j = 0; j < t.length; j++) {
+    if (!cache[t[j]]) return false;
+    cache[t[j]]--;
+    if (cache[t[j]] < 0) return false;
+  }
+  console.log(cache);
+  return Object.values(cache).every((x) => x === 0);
+};
+const s = "ab",
+  t = "a";
+console.log(isAnagram5(s, t));

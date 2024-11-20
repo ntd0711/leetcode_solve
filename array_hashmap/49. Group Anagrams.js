@@ -79,7 +79,7 @@ const groupAnagrams2 = (strs) => {
 };
 
 // console.log(groupAnagrams2(["eat", "tea", "tan", "ate", "nat", "bat"]));
-console.log(groupAnagrams2(["bdddddddddd", "bbbbbbbbbbc"]));
+// console.log(groupAnagrams2(["bdddddddddd", "bbbbbbbbbbc"]));
 
 // const topKFrequent = (nums, k) => {
 //   const map = nums.reduce((map, number) => {
@@ -102,3 +102,21 @@ console.log(groupAnagrams2(["bdddddddddd", "bbbbbbbbbbc"]));
 // };
 
 // console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
+
+const groupAnagram3 = (strs) => {
+  const obj = {};
+  for (let i = 0; i < strs.length; i++) {
+    const arr = Array.from({ length: 26 }, () => 0);
+    const word = strs[i];
+    for (let j = 0; j < word.length; j++) {
+      const charCode = word[j].charCodeAt(0);
+      arr[charCode - 97]++;
+    }
+    const key = arr.join(".");
+    if (!obj[key]) obj[key] = [];
+    obj[key].push(word);
+  }
+  return Array.from(Object.values(obj));
+};
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+console.log(groupAnagram3(strs));
